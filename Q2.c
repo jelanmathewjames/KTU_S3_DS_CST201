@@ -36,12 +36,17 @@ void transposetuple(int tuple[][3]){
 	}
 }
 
-int addtuple(tuple1[][3],tuple2[][3]){
-    if(
-    int i=1, j=1,k=0;
-	while(i<= tuple1[0][2] && j<= tuple2[0][2]){
-		if(tuple1[i][2]==tuple2[j][2]
-	}
+int addtuple(int tuple1[][3],int tuple2[][3],int max){
+    if(tuple1[0][0]!=tuple2[0][0]&&tuple1[0][1]!=tuple2[0][1])
+        return 0;
+    int tuple3[max][3],i=1,j=1,k=0;
+    tuple3[0][0]=tuple1[0][0];
+    tuple3[0][1]=tuple1[0][1];
+    while(i<= tuple1[0][2] && j<= tuple2[0][2]){
+		if(tuple1[i][1]==tuple2[j][1]){
+                    if(tuple1[i][2]==tuple2[j][2])
+                }
+    }
 }
 
 int main(){
