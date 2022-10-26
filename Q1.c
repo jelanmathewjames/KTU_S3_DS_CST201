@@ -11,7 +11,7 @@ polynomial poly[MAX];
 int avail = 0;
 
 
-void enterpoly(float coef, int expo){
+void enterpoly(int coef, int expo){
 	if(avail<=MAX){
 		poly[avail].coef = coef, poly[avail].expo = expo;
 		avail++;
@@ -22,8 +22,7 @@ void enterpoly(float coef, int expo){
 }
 
 void readpoly(int *start,int *end){
-	int terms,expo;
-	float coef;
+	int terms,expo,coef;
 	
 	printf("Enter number of terms\n");
 	scanf("%d",&terms);
@@ -32,7 +31,7 @@ void readpoly(int *start,int *end){
 	
 	for(int i =0;i<terms;i++){
 	    printf("Enter the coefficient");
-		scanf("%f",&coef);
+		scanf("%d",&coef);
 		printf("Enter the exponential");
 		scanf("%d",&expo);
 		enterpoly(coef,expo);
