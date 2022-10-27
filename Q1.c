@@ -12,7 +12,7 @@ int avail = 0;
 
 
 void enterpoly(int coef, int expo){
-	if(avail<=MAX){
+	if(avail<MAX){
 		poly[avail].coef = coef, poly[avail].expo = expo;
 		avail++;
 	}else{
