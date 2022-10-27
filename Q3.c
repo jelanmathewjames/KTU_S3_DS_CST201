@@ -29,7 +29,7 @@ void matrixtotuple(int row,int col,int arr[][col],int tuple[][3]){
 }
 
 
-int addtuplehelper(int arr[][3],int *a,int res[][3],int *r){
+void addtuplehelper(int arr[][3],int *a,int res[][3],int *r){
 	res[++(*r)][2] = arr[*a][2];
     res[*r][0] = arr[*a][0];
     res[*r][1] = arr[(*a)++][1];
@@ -50,21 +50,21 @@ int addtuple(int tuple1[][3],int tuple2[][3],int tuple3[][3]){
             	tuple3[++k][2] = tuple1[i][2]+tuple2[j][2];
             	tuple3[k][0] = tuple1[i++][0];
             	tuple3[k][1] = tuple2[j++][1];
-            }else if(tuple1[i][1]>tuple2[j][1])
+            }else if(tuple1[i][1]<tuple2[j][1])
                 addtuplehelper(tuple1,&i,tuple3,&k);
             else
             	addtuplehelper(tuple2,&j,tuple3,&k);
             	
-		}else if(tuple1[i][0]>tuple2[j][0])
+		}else if(tuple1[i][0]<tuple2[j][0])
         	addtuplehelper(tuple1,&i,tuple3,&k);
         else
         	addtuplehelper(tuple2,&j,tuple3,&k);
+       
     }
     while(i<= tuple1[0][2])
     	addtuplehelper(tuple1,&i,tuple3,&k);
-    
     while(j<= tuple2[0][2])
-    	addtuplehelper(tuple1,&i,tuple3,&k);
+    	addtuplehelper(tuple2,&j,tuple3,&k);
     tuple3[0][2]=k;
     return 1;
 }
@@ -103,5 +103,4 @@ int main(void){
 	}
 	return 0;
 		
-	
 }

@@ -40,14 +40,14 @@ int main(){
     	scanf("%d",&choice);
     	switch(choice){
         	case 1:
-			enqueue();
-			break;
+				enqueue();
+				break;
         	case 2:
-			printf("%d",dequeue());
-			break;
-		case 3:
-			flag=0;
-			break;
+				printf("%d",dequeue());
+				break;
+			case 3:
+				flag=0;
+				break;
         	default:printf("Invalid Input");
 	    }
     }
