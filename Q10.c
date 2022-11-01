@@ -50,7 +50,7 @@ int delete(int* delete_node){
 			if(delete_node != NULL && (temp->data == *delete_node && temp->next!=NULL)){
 				struct Node* remove = temp->next;
 				*temp = *temp->next;
-				free(remove);
+				free(remove);remove =NULL;
 				return 1;
 			}
 			prev = temp;
@@ -63,7 +63,7 @@ int delete(int* delete_node){
 			head=NULL;
 		}else{
 			prev->next = NULL;
-			free(temp);
+			free(temp);temp=NULL
 		}
 		
 	}

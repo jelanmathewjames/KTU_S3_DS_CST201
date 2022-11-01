@@ -2,7 +2,12 @@
 #define MAX 10
 int queue[MAX];
 int rear = -1,front= -1;
-
+void empty_stdin (void)
+{
+    int c = getchar();
+	while (c != '\n' && c != EOF)
+        c = getchar();
+}
 void enqueue(int data){
     if((rear+1)%MAX==front){
         printf("Queue is full\n");
@@ -50,22 +55,27 @@ int main(){
     int choice,flag=1,data;
 	while(flag){
 		printf("Enter\n 1 for enqueue\n 2 for dequeue\n 3 for exit\n");
-    	scanf("%d",&choice);
-    	switch(choice){
-        	case 1:
-        		printf("Enter data");
-        		scanf("%d",&data);
-				enqueue(data);
-				display();
-				break;
-        	case 2:
-				printf("Data removed %d\n",dequeue());
-				display();
-				break;
-			case 3:
-				flag=0;
-				break;
-        	default:printf("Invalid Input");
-	}
+    	int check = scanf("%d",&choice);
+    	if(check == 0){
+    		printf("not an integer");
+  			empty_stdin();
+    	}else{
+    		switch(choice){
+        		case 1:
+        			printf("Enter data");
+        			scanf("%d",&data);
+					enqueue(data);
+					display();
+					break;
+        		case 2:
+					printf("Data removed %d\n",dequeue());
+					display();
+					break;
+				case 3:
+					flag=0;
+					break;
+        		default:printf("Invalid Input");
+        	}
+		}
     }
 }

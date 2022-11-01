@@ -2,7 +2,7 @@
 
 #define MAX 10
 
-int queue[10];
+int queue[MAX];
 int rear = -1,front= -1;
 
 int isEmpty(){
