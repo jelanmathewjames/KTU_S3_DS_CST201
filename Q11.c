@@ -28,7 +28,7 @@ void display(void){
 	while(temp){
 		printf("%d, ",temp->data);
 		temp = temp->next;
-	}
+	}printf("\n");
 }
 
 int main(void){
