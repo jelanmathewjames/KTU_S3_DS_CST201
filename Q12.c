@@ -28,7 +28,7 @@ void dequeue(void){
 			front = front->next;
 			free(remove);remove = NULL;
 		}else{
-			free(front);free(rear);
+			free(front);
 			front = NULL; rear = NULL;
 		}
 	}else
