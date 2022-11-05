@@ -3,10 +3,11 @@
 #define MAX 30
 
 int top = -1;
-char stack[MAX],expr[MAX];
+int stack[MAX];
+char expr[MAX],res[MAX];
 
 void push(int data){
-    if(top<MAX_SIZE-1)
+    if(top<MAX-1)
         stack[++top] = data;
     else
         printf("stack overflow\n");
@@ -19,12 +20,70 @@ int pop(){
         printf("stack is empty\n");
 }
 
-//lparen, rparen, plus, minus, times, divide, mod,eos,operand
-//isp 0,19,12,12,13,13,13,0
-//icp 20,19,12,12,13,13,13,0
 int precedence(char token,int type){
+	int prec;
 	switch(token){
-		case '(': type?return 0: return 20;
-		case ')': return 19;
+		case '(': prec = type?0:20;break;
+		case ')': prec = 19;break;
+		case '+':
+		case '-': prec = 12;break;
+		case '*': 
+		case '/':
+		case '%': prec = 13;break;
+		case '^': prec = 14;break;
+		default: prec = -1;
+	}return prec;
+}
+
+void infixtopostfix(void){
+	int k=0,n=0;
+	while(expr[n] != '\0'){
+		if(precedence(expr[n],1)==-1)
+			res[k++] = expr[n];
+		else if(expr[n] == ')'){
+			while(stack[top] != '(')
+				res[k++] = pop();
+			pop();
+		}else{
+			while((top>-1)&&(precedence(stack[top],1)>=precedence(expr[n],0)))
+				res[k++] = pop();
+			push(expr[n]);
+		}
+		n++;
+	}
+	while(top>-1)
+		res[k++] = pop();
+}
+
+void evalpostfix(void){
+	int n=0,op1,op2;
+	while(res[n] != '\0'){
+		if(precedence(res[n],1) == -1)
+			push(res[n]-'0');
+		else{
+			op1=pop();op2=pop();
+			switch(res[n]){
+				case '+': push(op2+op1);break;
+				case '-': push(op2-op1);break;
+				case '*': push(op2*op1);break;
+				case '/': push(op2/op1);break;
+				case '%': push(op2%op1);break;
+				case '^': push(pow(op2,op1));break;
+			}
+		}
+		n++;
 	}
 }
+
+int main(void){
+	printf("Enter the infix expression");
+	scanf("%s",expr);
+	infixtopostfix();
+	printf("postfix expression : %s\n",res);
+	evalpostfix();
+	printf("result: %d\n",pop());
+}
+
+
+
+
