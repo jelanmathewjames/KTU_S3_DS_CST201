@@ -1,3 +1,8 @@
+/*Implement a stack using linked list with the operations:
+	Push elements to the stack.
+	Pop elements from the stack.
+	Display the stack after each operation.*/
+	
 #include <stdio.h>
 #include <stdlib.h>
 

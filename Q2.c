@@ -1,3 +1,7 @@
+/*Write a program to enter two matrices in normal form . Write a function to
+convert two matrices to tuple form and display it. Also find the transpose of
+the two matrices represented in tuple form and display it.*/
+
 #include <stdio.h>
 
 void display(int row, int col, int arr[][col]){

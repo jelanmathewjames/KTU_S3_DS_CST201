@@ -1,3 +1,7 @@
+/*Write a program to Write a program to enter two matrices in normal form .
+Write a function to convert two matrices to tuple form and display it. Also find
+the sum of the two matrices in tuple form and display the sum in tuple form.*/
+
 #include <stdio.h>
 
 void display(int row, int col, int arr[][col]){

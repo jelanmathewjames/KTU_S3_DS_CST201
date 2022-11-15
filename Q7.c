@@ -1,3 +1,8 @@
+/*Implement a Priority Queue using arrays with the operations:
+	Insert elements to the Priority Queue.
+	Delete elements from the Priority Queue.
+	Display the contents of the Priority Queue after each operation.*/
+
 #include <stdio.h>
 
 #define MAX 10
@@ -7,7 +12,7 @@ int rear = -1;
 
 
 void enqueue(int data,int priority){
-	if(rear < MAX){
+	if(rear < MAX-1){
 		queue[++rear][0] = data;
 		queue[rear][1] = priority;
 	}else
