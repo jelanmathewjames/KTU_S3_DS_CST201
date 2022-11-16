@@ -1,5 +1,14 @@
+/*Write a menu driven program for performing the following operations on a
+Linked List:
+	Display
+	Insert at Beginning
+	Insert at End
+	Insert at a specified Position
+	Delete from Beginning
+	Delete from End
+	Delete from a specified Position*/
+
 #include <stdio.h>
-#include <stdlib.h>
 #include <malloc.h>
 struct Node{
     int data;
@@ -50,7 +59,7 @@ int delete(int* delete_node){
 			if(delete_node != NULL && (temp->data == *delete_node && temp->next!=NULL)){
 				struct Node* remove = temp->next;
 				*temp = *temp->next;
-				free(remove);remove =NULL;
+				free(remove);
 				return 1;
 			}
 			prev = temp;
@@ -63,9 +72,8 @@ int delete(int* delete_node){
 			head=NULL;
 		}else{
 			prev->next = NULL;
-			free(temp);temp=NULL
+			free(temp);
 		}
-		
 	}
 	return 1;
 }
@@ -88,44 +96,25 @@ int main(){
     int choice,data,add_after,delete_node;
     int flag=1;
     while(flag){
-    	printf("Enter the choice\n 1 for display\n");
-    	printf(" 2 for insert at beginning\n 3 for insert at end\n");
-    	printf(" 4 for insert at a specific position\n 5 delete from beginning\n");
-    	printf(" 6 delete from end\n 7 delete from specific position\n");
+    	printf("Enter the choice\n 1 for display\n"
+    		" 2 for insert at beginning\n 3 for insert at end\n"
+    		" 4 for insert at a specific position\n 5 delete from beginning\n"
+    		" 6 delete from end\n 7 delete from specific position\n");
     	scanf("%d",&choice);
     	switch(choice){
-        	case 1:
-        		display();
+        	case 1: display();break;
+        	case 2: printf("Enter data");scanf("%d",&data);
+            	addnode_front(data);break;
+        	case 3:printf("Enter data");scanf("%d",&data);
+            	addnode_end(data);break;
+        	case 4:printf("Enter data and after which data you want to insert");
+				scanf("%d%d",&data,&add_after);addnode_middle(data,add_after);
 	    		break;
-        	case 2:
-        		printf("Enter data");
-				scanf("%d",&data);
-            	addnode_front(data);
-	    		break;
-        	case 3:
-        		printf("Enter data");
-				scanf("%d",&data);
-            	addnode_end(data);
-	    		break;
-        	case 4:
-        		printf("Enter data and after which data you want to insert");
-				scanf("%d%d",&data,&add_after);
-				addnode_middle(data,add_after);
-	    		break;
-        	case 5:
-        		delete(&head->data);
-	    		break;
-        	case 6:
-				delete(NULL);
-	    		break;
-        	case 7:
-        		printf("Enter data to delete");
-				scanf("%d",&delete_node);
-				delete(&delete_node);
-	    		break;
-            	
+        	case 5:delete(&head->data);break;
+        	case 6:delete(NULL);break;
+        	case 7:printf("Enter data to delete");scanf("%d",&delete_node);
+				delete(&delete_node);break;
         	default:flag=0;break;
-            
     	}
     }
     return 0;

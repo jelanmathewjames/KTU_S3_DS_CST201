@@ -1,3 +1,4 @@
+/*Implementation of searching algorithms – linear search, binary search*/
 #include <stdio.h>
 
 void binarysearch(int arr[],int key,int n){

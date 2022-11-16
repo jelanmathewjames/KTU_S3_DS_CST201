@@ -1,3 +1,10 @@
+/*Implement a Double-Ended Queue (DEQUEUE) with the operations:
+	Insert elements to the Front of the queue.
+	Insert elements to the Rear of the queue
+	Delete elements from the Front of the queue.
+	Delete elements from the Rear of the queue.
+	Display the queue after each operation.*/
+	
 #include <stdio.h>
 #define MAX 10
 int queue[MAX],rear = -1,front= -1;

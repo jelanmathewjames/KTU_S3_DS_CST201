@@ -1,3 +1,8 @@
+/*Implement a Queue using arrays with the operations:
+	Insert elements to the Queue.
+	Delete elements from the Queue.
+	Display the contents of the Queue after each operation.*/
+
 #include <stdio.h>
 
 #define MAX 10

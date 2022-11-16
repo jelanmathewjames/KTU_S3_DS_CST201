@@ -1,3 +1,5 @@
+/*Write a program to reverse the content of queue using stack*/
+
 #include <stdio.h>
 #define MAX 10
 int rear = -1,front= -1,top = -1,queue[MAX],stack[MAX];

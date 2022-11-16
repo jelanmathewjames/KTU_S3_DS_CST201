@@ -1,3 +1,8 @@
+/*Implement a Queue using linked list with the operations:
+	Insert an elements to the queue.
+	Delete an elements from the queue.
+	Display the queue after each operation.*/
+
 #include <stdio.h>
 #include <stdlib.h>
 
