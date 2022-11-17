@@ -15,7 +15,6 @@ void addnode_front(int data){
 void addnode_middle(int data,int add_after){
     struct Node* new_node = malloc(sizeof (struct Node));
     struct Node* temp = head;
-      
         while(temp&&temp->data!=add_after)
 			temp = temp->next;
 	    if(temp){
@@ -23,7 +22,6 @@ void addnode_middle(int data,int add_after){
 			temp->next = new_node; new_node->data=data;
 		}else
 			printf("data not found in list\n");
-	
 }
 void addnode_end(int data){
 	struct Node* new_node = malloc(sizeof (struct Node));
