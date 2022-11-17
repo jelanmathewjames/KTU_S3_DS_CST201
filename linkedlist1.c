@@ -4,7 +4,9 @@ struct Node{
     int data;
     struct Node* next;
 };
+
 struct Node* head=NULL;
+int size = 0;
 
 struct Node* create_node(int data,struct Node* next){
 	struct Node* new_node = malloc(sizeof (struct Node));
@@ -15,94 +17,59 @@ struct Node* create_node(int data,struct Node* next){
 void addnode_front(int data){
 	struct Node* new_node = create_node(data,head);
 	head = new_node;
+	size++;
 }
 
 void addnode_middle(int data,int position){
-	if(position < 1)
-		printf("low position\n");
+	if(position < 1 || position>size+1)
+		printf("invalid position\n");
 	else{
-		int i;
-		if(!head && position == 1){
-			struct Node* new_node = create_node(data,head);
-			head = new_node;
-		}else if(head){
-			struct Node* temp = head;
-			for(i=1;i<position;i++){
-				if(temp->next)
-					temp = temp->next;
-				else
-					break;
-			}if(!temp->next ){
-					if(i == position-1)
-						temp->next = create_node(data,NULL);
-					else
-						printf("position out of list\n");
-					return;
-			}struct Node var = *temp;
-			printf("%d",temp->next);
-			printf("%d",var.next);
-			struct Node* new_node = create_node(data,&var);
-			printf("%d\n",new_node->next->next);
-			*temp = *new_node;return;
-			printf("%d",temp->data);
-		}printf("position out of list\n");
+		struct Node** temp = &head;
+		for(int i=1;i<position;i++)
+			temp = &(*temp)->next;
+		struct Node* new_node = create_node(data,*temp);
+		*temp = new_node;
+		size++;
 	}
 }
 
 void addnode_end(int data){
 	struct Node* new_node = create_node(data,NULL);
-   	if(!head){
-		head = new_node;                                                                          
-    }else{
-    	struct Node* temp = head;
-    	while(temp->next!=NULL)
-    		temp = temp->next;
-    	temp->next = new_node;
-    }
+   	struct Node** temp = &head;
+    while(*temp!=NULL)
+    	temp = &(*temp)->next;
+    *temp = new_node;
+    size++;
 }
 
 void delete_front(void){
 	if(head){
 		struct Node* remove = head;
-		head = head->next; free(remove);
+		head = head->next; free(remove); size--;
 	}else
 		printf("list is empty\n");
 }
 
 void delete_middle(int position){
-	if(position < 1)
-		printf("low position\n");
+	if(position < 1 ||position > size)
+		printf("invalid position\n");
 	else{
-		if(!head){
-			printf("list is empty\n");
-			return;
-		}struct Node *temp = head, *prev = NULL;
-		for(int i=1;i<position;i++){
-			prev = temp;
-			temp = temp->next;
-			if(!temp){
-				printf("position out of list\n");
-				return;
-			}
-		}if(prev){
-			prev->next = temp->next; free(temp);
-		}else{
-			head = head->next; free(temp);
-		}
+		struct Node** temp = &head;
+		for(int i= 1;i<position;i++)
+			temp = &(*temp)->next;
+		struct Node* remove = *temp;
+		*temp = (*temp)->next; free(remove);
+		size--;
 	}
 }
 
 void delete_end(void){
-	if(!head){
-		printf("list is empty\n");
-		return;
-	}struct Node *temp = head, *prev = NULL;
-	while(temp->next){
-		prev = temp; temp = temp->next;
-	}if(prev){
-			prev->next = temp->next; free(temp);
-	}else{
-			head = head->next; free(temp);
+	if(head){
+		struct Node **temp =  &head;
+		while((*temp)->next)
+			temp = &(*temp)->next;
+		free(*temp); *temp = NULL;
+		size--;
 	}
 }
 
@@ -122,7 +89,7 @@ void display(void){
 
 int main(){
     
-    int choice,data,position,delete_node;
+    int choice,data,position;
     int flag=1;
     while(flag){
     	printf("Enter the choice\n 1 for display\n");
@@ -131,7 +98,7 @@ int main(){
     	printf(" 6 delete from end\n 7 delete from specific position\n");
     	scanf("%d",&choice);
     	switch(choice){
-        	case 1:display();break;
+        	case 1:display();printf("%d\n",size);break;
         	case 2:printf("Enter data");scanf("%d",&data);
             	   addnode_front(data);break;
         	case 3:printf("Enter data");scanf("%d",&data);
@@ -141,8 +108,8 @@ int main(){
 	    		   break;
         	case 5:delete_front();break;
         	case 6:delete_end();break;
-        	case 7:printf("Enter position to delete");scanf("%d",&delete_node);
-				   delete_middle(delete_node);break;
+        	case 7:printf("Enter position to delete");scanf("%d",&position);
+				   delete_middle(position);break;
             default:flag=0;break;
         }
     }
