@@ -14,10 +14,8 @@ struct Node{
 
 struct Node** enterpoly(struct Node **temp,int coef,int expo){
 	*temp = malloc(sizeof (struct Node));
-	(*temp)->coef = coef;
-	(*temp)->expo = expo;
-	(*temp)->next = NULL;
-	temp = &(*temp)->next;
+	(*temp)->coef = coef;(*temp)->expo = expo;
+	(*temp)->next = NULL;temp = &(*temp)->next;
 	return temp;
 }
 
@@ -35,30 +33,59 @@ void readpoly(struct Node **start){
 
 }
 
-void displaypoly(struct Node **start){
+void displaypoly(struct Node *start){
 	
-	struct Node* temp = *start;
+	struct Node* temp = start;
 	printf("%dx^%d",temp->coef,temp->expo);
 	temp = temp->next;
 	while(temp){
 		printf("+%dx^%d",temp->coef,temp->expo);
 		temp = temp->next;
-	}
+	}printf("\n");
 }
 
 void polyaddition(struct Node* startA,struct Node* startB,struct Node** startC){
-	*startC = malloc(sizeof (struct Node));
-	struct Node* temp = *startC;
+
+	while(startA && startB){
 	
-	/*while(startA && startB){
-		if(startA->expo > startB->expo)
-	}*/
+		if(startA->expo == startB->expo){
+			startC = enterpoly(startC, startA->coef+startB->coef, startA->expo);
+			startA = startA->next; startB = startB->next;
+			
+		}else if(startA->expo > startB->expo){
+			startC = enterpoly(startC, startA->coef, startA->expo);
+			startA = startA->next;
+			
+		}else if(startA->expo < startB->expo){
+			startC = enterpoly(startC, startB->coef, startB->expo);
+			startB = startB->next;
+		}
+	}
+	
+	while(startA){
+		startC = enterpoly(startC, startA->coef, startA->expo);
+		startA = startA->next;
+	}
+	while(startB){
+		startC = enterpoly(startC, startB->coef, startB->expo);
+		startB = startB->next;
+	}
 }
 
 int main(void){
 	struct Node *startA=NULL, *startB=NULL, *startC=NULL;
+	printf("Enter first polynomial\n");
 	readpoly(&startA);
-	displaypoly(&startA);
+	printf("Enter second polynomial\n");
+	readpoly(&startB);
+	printf("first: ");
+	displaypoly(startA);
+	printf("second: ");
+	displaypoly(startB);
+	polyaddition(startA,startB,&startC);
+	printf("result: ");
+	displaypoly(startC);	
+	return 0;
 }
 
 

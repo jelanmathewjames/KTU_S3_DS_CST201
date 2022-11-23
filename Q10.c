@@ -68,7 +68,7 @@ int main(void){
     	printf(" 6 delete from end\n 7 delete from specific position\n");
     	scanf("%d",&choice);
     	switch(choice){
-        	case 1:display();printf("%d\n",size);break;
+        	case 1:display();break;
         	case 2:printf("Enter data");scanf("%d",&data);
             	   addnode(data,1);break;
         	case 3:printf("Enter data");scanf("%d",&data);
