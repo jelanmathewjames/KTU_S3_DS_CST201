@@ -20,8 +20,7 @@ struct Node** enterpoly(struct Node **temp,int coef,int expo){
 }
 
 void readpoly(struct Node **start){
-
-    int coef,expo,terms;
+	int coef,expo,terms;
 	printf("Enter no of terms");
 	scanf("%d",&terms);
 	
@@ -32,19 +31,41 @@ void readpoly(struct Node **start){
 	}
 
 }
+
+void add_duplicate(struct Node **startC){
+
+	struct Node **fix=startC,**mover = &(*fix)->next;
+
+	while(*fix && (*fix)->next){
+		
+		while(*mover){
+			if((*fix)->expo == (*mover)->expo){
+				
+				(*fix)->coef = (*fix)->coef+(*mover)->coef;
+				struct Node* remove = *mover;
+				*mover = (*mover)->next; free(remove); 
+			}
+			mover = &(*mover)->next;
+		}
+		fix = &(*fix)->next;
+		mover = &(*fix)->next;
+	}
+	
+
+}
+
 void multiplypoly(struct Node *startA,struct Node *startB,struct Node **startC){
-	struct Node* temp = startB;
+	struct Node *temp = startB;
+	
 	while(startA){
 		while(startB){
-			if(*startC && ((*startC)->expo == startA->expo+startB->expo))
-				startC = enterpoly(startC,(startA->coef*startB->coef)+(*startC)->coef,(*startC)->coef);
-			else
-				startC = enterpoly(startC,startA->coef*startB->coef,startA->expo+startB->expo);
+			startC = enterpoly(startC,startA->coef*startB->coef,startA->expo+startB->expo);
 			startB = startB->next;
 		}
 		startB = temp;
 		startA = startA->next;
 	}
+	add_duplicate(startC);
 }
 
 void displaypoly(struct Node *start){
@@ -69,6 +90,7 @@ int main(void){
 	printf("second: ");
 	displaypoly(startB);
 	multiplypoly(startA,startB,&startC);
+	add_duplicate(&startC);
 	printf("result: ");
 	displaypoly(startC);
 	return 0;
