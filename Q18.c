@@ -13,3 +13,40 @@ struct Node{
 	struct Node* right;
 	int data;
 };
+struct Node* root=NULL;
+
+void create_node(int data){
+	struct Node* new_node = malloc(sizeof (struct Node));
+	new_node->data = data;new_node->left = NULL;new_node->right = NULL;
+	return new_node;
+}
+
+void insert(int data){
+	if(!root){
+		struct Node **temp = &root;
+		while(temp){
+			if(data > temp->data)
+				temp = temp->right;
+			else if(data < temp->data)
+				temp = temp->left;
+		}
+	}else
+		root = create_node(data);
+		
+}
+
+void delete(){
+}
+
+void preorder(){
+}
+
+void postorder(){
+}
+
+void inorder(){
+}
+
+int main(void){
+
+}
