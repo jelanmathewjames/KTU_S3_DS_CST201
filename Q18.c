@@ -22,20 +22,19 @@ void create_node(int data){
 }
 
 void insert(int data){
-	if(!root){
-		struct Node **temp = &root;
-		while(temp){
-			if(data > temp->data)
-				temp = temp->right;
-			else if(data < temp->data)
-				temp = temp->left;
-		}
-	}else
-		root = create_node(data);
+	struct Node **temp = &root;
+	while(temp){
+		if(data > temp->data)
+			temp = temp->right;
+		else if(data < temp->data)
+			temp = temp->left;
+	}
+	
 		
 }
 
 void delete(){
+	
 }
 
 void preorder(){

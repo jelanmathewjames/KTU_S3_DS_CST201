@@ -44,8 +44,8 @@ void add_duplicate(struct Node **startC){
 				(*fix)->coef = (*fix)->coef+(*mover)->coef;
 				struct Node* remove = *mover;
 				*mover = (*mover)->next; free(remove); 
-			}
-			mover = &(*mover)->next;
+			}else
+				mover = &(*mover)->next;
 		}
 		fix = &(*fix)->next;
 		mover = &(*fix)->next;
