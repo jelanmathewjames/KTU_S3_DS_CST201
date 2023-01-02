@@ -3,15 +3,6 @@
 #include <stdio.h>
 #define MAX 10
 int rear = -1,front= -1,top = -1,queue[MAX],stack[MAX];
-/*void empty_stdin (void)
-{
-	if(check == 0){
-    		printf("not an integer");
-  			empty_stdin();
-    int c = getchar();
-	while (c != '\n' && c != EOF)
-        c = getchar();
-}*/
 
 void push(int data){
     if(top < MAX-1)

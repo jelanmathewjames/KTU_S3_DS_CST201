@@ -89,7 +89,8 @@ int main(){
 		displaypoly(startB,endB);
 		addpoly(startA, endA, startB, endB, &startC, &endC);
 		printf("result: ");
-		displaypoly(startC,endC);	
+		displaypoly(startC,endC);
+		printf("\n");	
 	}
 	
 }

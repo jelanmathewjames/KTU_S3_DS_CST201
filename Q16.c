@@ -65,7 +65,7 @@ void multiplypoly(struct Node *startA,struct Node *startB,struct Node **startC){
 		startB = temp;
 		startA = startA->next;
 	}
-	add_duplicate(startC);
+	
 }
 
 void displaypoly(struct Node *start){

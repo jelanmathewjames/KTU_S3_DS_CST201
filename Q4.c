@@ -4,15 +4,9 @@
 	Display the contents of the queue after each operation.*/
 
 #include <stdio.h>
-#define MAX 10
+#define MAX 5
 int queue[MAX];
 int rear = -1,front= -1;
-void empty_stdin (void)
-{
-    int c = getchar();
-	while (c != '\n' && c != EOF)
-        c = getchar();
-}
 void enqueue(int data){
     if((rear+1)%MAX==front){
         printf("Queue is full\n");
@@ -61,11 +55,7 @@ int main(){
 	while(flag){
 		printf("Enter\n 1 for enqueue\n 2 for dequeue\n 3 for exit\n");
     	int check = scanf("%d",&choice);
-    	if(check == 0){
-    		printf("not an integer");
-  			empty_stdin();
-    	}else{
-    		switch(choice){
+    	switch(choice){
         		case 1:
         			printf("Enter data");
         			scanf("%d",&data);
@@ -80,7 +70,6 @@ int main(){
 					flag=0;
 					break;
         		default:printf("Invalid Input");
-        	}
 		}
     }
 }

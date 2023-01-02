@@ -31,6 +31,7 @@ void check_palindrome(){
 		while(h_temp!=t_temp){
 			if(h_temp->data != t_temp->data){
 				flag=0;
+				break;
 			}
 			h_temp = h_temp->next;
 			t_temp = t_temp->prev;

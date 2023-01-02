@@ -5,7 +5,7 @@
 
 #include <stdio.h>
 
-#define MAX 10
+#define MAX 5
 
 int queue[MAX];
 int rear = -1,front= -1;

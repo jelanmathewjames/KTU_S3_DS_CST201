@@ -4,7 +4,7 @@
 	Display the contents of the Stack after each operation.*/
 
 #include <stdio.h>
-#define MAX_SIZE 30
+#define MAX_SIZE 5
 
 int stack[MAX_SIZE], top = -1;
 

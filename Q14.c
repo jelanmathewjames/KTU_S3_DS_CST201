@@ -32,18 +32,21 @@ void read(int arr[],int n){
 }
 
 int main(void){
-	int n, key, choice,flag=1;
+	int n, key, choice,flag=1,arr[30];
 	while(flag){
 		printf("Enter\n 1 for linear search\n 2 for binarysearch\n 3 for exit\n");
 		scanf("%d",&choice);
-		printf("Enter the limit\n");
-		scanf("%d",&n);
-		int arr[n];
 		switch(choice){
-			case 1:printf("Enter the elements\n"); read(arr,n);
+			case 1:printf("Enter the limit\n");
+				   scanf("%d",&n);
+				   printf("Enter the elements\n"); 
+			       read(arr,n);
     			   printf("Enter the key for searching\n"); scanf("%d", &key);
     			   linearsearch(arr,key,n);break;
-    		case 2:printf("Enter the sorted elements\n"); read(arr,n);
+    		case 2:printf("Enter the limit\n");
+	               scanf("%d",&n);
+    			   printf("Enter the sorted elements\n"); 
+    		       read(arr,n);
     			   printf("Enter the key for searching\n"); scanf("%d", &key);
     			   binarysearch(arr,key,n);break;
     		case 3:flag=0;break;
