@@ -32,6 +32,10 @@ void insert(int data){
 			new_node = &(*new_node)->right;
 		else if(data < (*new_node)->data)
 			new_node = &(*new_node)->left;
+		else{
+			printf("duplicate value not allowed");
+			return;
+		}
 	}*new_node = malloc(sizeof (struct Node));
 	(*new_node)->data=data;
 	(*new_node)->left=NULL;(*new_node)->right=NULL;
@@ -51,7 +55,12 @@ void delete_helper(struct Node** delete_node){
 			free((*delete_node)->left);
 			(*delete_node)->left = NULL;
 		}else{
-			
+			struct Node** successor = &(*delete_node)->right;
+			while((*successor)->left)
+				successor = &(*successor)->left;
+			(*delete_node)->data = (*successor)->data;
+			free(*successor);
+			*successor = NULL;
 		}
 	}
 		 
@@ -62,15 +71,49 @@ void delete(int key){
 }
 
 
-void preorder(){
+void preorder(struct Node* node){
+	if(node){
+		printf("%d ",node->data);
+		preorder(node->left);
+		preorder(node->right);
+	}
 }
 
-void postorder(){
+void postorder(struct Node* node){
+	if(node){
+		preorder(node->left);
+		preorder(node->right);
+		printf("%d ",node->data);
+	}
 }
 
-void inorder(){
+void inorder(struct Node* node){
+	if(node){
+		preorder(node->left);
+		printf("%d ",node->data);
+		preorder(node->right);
+	}
 }
 
 int main(void){
-
+	int choice,data,position,flag=1;
+    while(flag){
+    	printf("Enter the choice\n 1 for Insert element to tree\n");
+    	printf(" 2 Delete element from tree\n 3 preorder traversal\n");
+    	printf(" 4 inorder traversal\n 5 postorder traversal\n");
+    	printf("6 for exit\n");
+    	scanf("%d",&choice);
+    	switch(choice){
+        	case 1:printf("Enter data to insert");scanf("%d",&data);
+        		   insert(data);break;
+        	case 2:printf("Enter data to delete");scanf("%d",&data);
+            	   delete(data);break;
+        	case 3:preorder(root);break;
+        	case 4:inorder(root);break;
+        	case 5:postorder(root);break;
+        	case 6:flag=0;break;
+        	default:printf("invalid input");break;
+        }
+    }
+    return 0;
 }
