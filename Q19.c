@@ -8,8 +8,7 @@
 struct Vertex{
 	int data;
 	struct Vertex* link;
-};
-struct Vertex* graph;
+} *graph;
 
 int *visited, queue[MAX], rear = -1, front= -1;
 void enqueue(int data){
@@ -45,13 +44,13 @@ int dequeue(){
 void bfs(int data){
 	enqueue(data);
 	struct Vertex* w;
-	printf("%d",data);
+	printf("%d->",data);
 	visited[data] = 1;
 	while(rear != -1){
 		int v = dequeue();
 		for(w=&graph[v];w;w=w->link){
 			if(!visited[w->data]){
-				printf("%d",w->data);
+				printf("%d->",w->data);
 				enqueue(w->data);
 				visited[w->data] = 1;
 			}
@@ -61,13 +60,14 @@ void bfs(int data){
 
 void dfs(int data){
 	visited[data] = 1;
-	printf("%d",graph[data].data);
+	printf("%d->",graph[data].data);
 	struct Vertex* w;
 	for(w=&graph[data];w;w=w->link){
 		if(!visited[w->data])
 			dfs(w->data);
 	}
 }
+
 
 int main(void){
 	int n,c,choice,flag = 1,data;
@@ -92,7 +92,9 @@ int main(void){
 		}
 	}
 	while(flag){
-		printf("Enter the choice\n 1 for dfs\n 2 for bfs\n 3 to exit");
+		for(int i=0;i<n;i++)
+			visited[i] = 0;
+		printf("\nEnter the choice\n 1 for dfs\n 2 for bfs\n 3 to exit");
 		scanf("%d",&choice);
 		switch(choice){
 			case 1:printf("Enter the data");scanf("%d",&data);dfs(data);break;
