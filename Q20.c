@@ -4,7 +4,7 @@ void selectionsort(int arr[],int n){
 	for(int i=0;i<=n-1;i++){
 		int min = i,t;
 		for(int j=i+1;j<=n;j++)
-			if(arr[i]>arr[j])
+			if(arr[min]>arr[j])
 				min = j;
 		if(i!=min)
 			SWAP(arr[i],arr[min],t);
