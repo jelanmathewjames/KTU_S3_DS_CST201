@@ -6,7 +6,7 @@ int *arr = NULL;
 
 void initarray(){
 	if(arr == NULL)
-		arr = malloc(MAX*sizeof (int);
+		arr = malloc(MAX*sizeof (int));
  	else
 		printf("array already intialised");
 }
